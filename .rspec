@@ -1,0 +1,46 @@
+require 'spec_helper'
+
+ENV['RAILS_ENV'] ||= 'test'
+
+require File.expand_path('../config/environment', __dir__)
+
+abort("The Rails environment is running in production mode!") if 				Rails.env.production?
+require 'rspec/rails'
+
+begin
+	ActiveRecord::Migration.maintain_test_schema!
+rescue ActiveRecord::PendingMigrationError => e
+	puts e.to_s.strip
+	exit 1
+end
+
+RSpec.configure do |config|
+	config.fixture_path = "#{::Rails.root}/spec/fixtures"
+	config.use_transactional_fixtures = true
+	config.infer_spec_type_from_file_location!
+	config.filter_rails_from_backtrace!
+	config.include FactoryBot::Syntax::Methods
+end
+
+Shoulda::Matchers.configure do |config|
+	config.integrate do |with|
+		with.test_framework :rspec
+		with.library :rails
+	end
+end
+Before we move on we need to add another configuration to the Rails application to avoid the generators to scaffold too many files. Make the following modification to the config/application.rb file:
+
+	class Application < Rails::Application
+
+	# Disable generation of helpers, javascripts, CSS, and view, helper, routing and controller specs
+
+	config.generators do |generate|
+		generate.helper false
+		generate.assets false
+		generate.view_specs false
+		generate.helper_specs false
+		generate.routing_specs false
+		generate.controller_specs false
+	end
+# ...
+end
