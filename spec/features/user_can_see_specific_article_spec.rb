@@ -1,3 +1,5 @@
+require "rails_helper"
+
 feature 'User can see specific article' do
     before do
       create(:article, title: 'A breaking news item', content: 'Some breaking action')
