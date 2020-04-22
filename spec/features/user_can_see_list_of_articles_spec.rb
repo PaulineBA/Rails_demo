@@ -1,4 +1,5 @@
 require "rails_helper"
+
 feature 'List articles on index page' do
     context 'with articles in db' do
       before do
@@ -15,5 +16,6 @@ feature 'List articles on index page' do
       it 'displays second article title' do
         expect(page).to have_content 'Some really breaking action'
       end
+
     end
   end

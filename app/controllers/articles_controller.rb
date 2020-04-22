@@ -7,13 +7,16 @@ class ArticlesController < ApplicationController
 
     def show 
       @article = Article.find(params[:id])
-    
-    end
+     
+  end
 
     def new
+      @article = Article.new
     end
    
     def create
-      render plain: params[:article].inspect
+      @article = Article.new (params.(:article).permit(:title, :content))
+      @article.save
+      redirect_to @article
     end
 end
