@@ -1,0 +1,10 @@
+<h1>New Article<h1/>
+<%= from with scope: :article, local: true do |form| %>
+    <%= form.label :title%>
+    <%= form.text_field :title%>
+    <%= form.label :content%>
+    <%= form.text_field :content%>
+    <%= form.submit "Create Article"%>
+    
+    <%end%>
+
