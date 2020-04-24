@@ -1,22 +1,22 @@
 class ArticlesController < ApplicationController
   def index
-
     @articles = Article.all   
-
-    end
-
-    def show 
-      @article = Article.find(params[:id])
-     
   end
 
-    def new
+  def show 
+      @article = Article.find(params[:id]) 
+  end
+
+  def new
       @article = Article.new
-    end
+  end
    
-    def create
-      @article = Article.new (params.(:article).permit(:title, :content))
-      @article.save
-      redirect_to @article
+  def create
+      @article = Article.create(params.require(:article).permit(:title, :content))
+    if @article.persisted?
+      redirect_to @article, notice: "Article was created"
+    else
+      render 'new', notice: "Something went wrong"
+      end
     end
 end
