@@ -8,7 +8,7 @@ feature "user can Sign up" do
             click_on "Sign_up"
         end
         it "should have a sign up form" do 
-            expect(page).to have_content "Welcome!"
+            expect(page).to have_content "Sign up"
         end
 
         it 'should be able to be filled in' do
@@ -16,9 +16,9 @@ feature "user can Sign up" do
             fill_in "Password", with: "password"
             fill_in "Password confirmation", with: "password"
             within ".actions" do
-                click_on "Sign_up"
+                click_on "Sign up"
             end
-                expect(page).to have_content "Signed up successfully"
+                expect(page).to have_content "You have signed up successfully"
     end
 end
 
@@ -31,7 +31,7 @@ end
         fill_in "Password", with: "password"
         fill_in "Password confirmation", with: "1456487wer"
         within ".actions" do 
-            click_on "Sign_up"
+            click_on "Sign up"
     end
         
         expect(page).to have_content "Password confirmation doesn't match"
@@ -44,9 +44,9 @@ end
         fill_in "Password", with: model.password
         fill_in "Password confirmation", with: model.password
         within ".actions" do
-            click_on "Sign_up"
+            click_on "Sign up"
         end
-        expect(page).to have_content "Email is already been taken"
+        expect(page).to have_content "already been taken"
     
 
 end
