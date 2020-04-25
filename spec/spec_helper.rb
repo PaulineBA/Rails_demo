@@ -1,8 +1,9 @@
-  RSpec.configure do |config|
+require 'devise'
+RSpec.configure do |config|
     config.include Devise::Test::ControllerHelpers, type: :controller
     config.include Devise::Test::ControllerHelpers, type: :view
-  end
-  
+ 
+
   config.expect_with :rspec do |expectations|
     
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -17,6 +18,5 @@
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-
-
 end
+
