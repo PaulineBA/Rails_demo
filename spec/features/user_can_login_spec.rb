@@ -2,7 +2,7 @@ require "spec_helper"
 require "rails_helper"
 
 feature "User can login" do
-    let(:model) { FactoryBot.create(:model, email: "ghsghf@hdj.com") }
+    let(:model) { FactoryBot.create(:model, email: "pauline@test.com") }
  
      describe "on the login the page" do
         before do
