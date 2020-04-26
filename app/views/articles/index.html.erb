@@ -3,16 +3,15 @@
 <p>Some really breaking action</p>
 <ul>
   <% @articles.each do |article| %>
-    <li>
-       <%= link_to article.title, article_path(article)%><br />
-       <%= link_to 'New Article', new_article_path %>
-       
-    </li>
+    <li><%= link_to article.title, article_path(article) %></li><br />
+    <% end %>
+  </ul> 
+    <%= link_to "New Article", new_article_path %>
+    <% if user_signed_in? %>
+    <%= link_to "New Article", new_article_path %> 
     
-  <% end %>
-</ul>
-
-<p><%= link_to 'Sign_up', new_model_registration_path %></p>
-
-
-<%= link_to 'Log_in', new_model_session_path %>
+    <% else %>
+    <p><%= link_to 'Sign_up', new_model_registration_path %></p>
+    <%= link_to 'Log_in', new_model_session_path %>
+    <% end %>
+    

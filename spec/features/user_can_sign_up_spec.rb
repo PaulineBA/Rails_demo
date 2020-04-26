@@ -7,7 +7,7 @@ feature "user can Sign up" do
             visit root_path
             click_on "Sign_up"
         end
-        it "should have a sign up form" do 
+        it "should be on the sign up page" do 
             expect(page).to have_content "Sign up"
         end
 

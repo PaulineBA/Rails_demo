@@ -3,20 +3,14 @@ require "rails_helper"
 
 feature "User can login" do
     let(:model) { FactoryBot.create(:model, email: "pauline@test.com") }
- 
-     describe "on the login the page" do
-        before do
-            visit new_model_session_path
-             fill_in "Email", with: model.email
-             fill_in "Password", with: model.password
-             click_on "Log in"
-            end
- 
+    before do
+        login_as(user, scope: :user)
+        visit root_path
+    end
             it "after log in show successful message" do
                 expect(page).to have_content "Signed in successfully"
-            end
+            end 
         end
-
         describe 'if requirements are not met' do
             before do
                 visit new_model_session_path
@@ -25,8 +19,10 @@ feature "User can login" do
              fill_in "Email", with: model.email
              fill_in "Password", with: "blablabla"
              click_on "Log in"
+            end
              expect(page).to have_content "Invalid Email or password"
             end
+        
     
              it 'with unregistered user' do
                 fill_in "Email", with: "ghjsh@hj"
@@ -36,5 +32,4 @@ feature "User can login" do
                 end
                 expect(page).to have_content "Invalid Email or password"
          end
-     end
- end
+        
