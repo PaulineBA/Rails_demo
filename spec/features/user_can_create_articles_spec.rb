@@ -1,10 +1,14 @@
 require "rails_helper"
+require "spec_helper"
 
 feature 'User can create articles' do
-    before do
-      visit root_path
-      click_on "New Article"
+  let(:model) { FactoryBot.create(:model, email: "pauline@test.com", password: "test")}
+  before do
+    login_as(model, scope: :model)
+    visit root_path
+    click_on "New article"
     end
+  end
   
   describe "user can successfully create an article" do
     before do
@@ -18,4 +22,3 @@ feature 'User can create articles' do
       end     
 
 end  
-end   

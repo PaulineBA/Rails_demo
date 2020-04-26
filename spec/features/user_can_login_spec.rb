@@ -4,7 +4,7 @@ require "rails_helper"
 feature "User can login" do
     let(:model) { FactoryBot.create(:model, email: "pauline@test.com") }
     before do
-        login_as(user, scope: :user)
+        login_as(model, scope: :model)
         visit root_path
     end
             it "after log in show successful message" do
@@ -32,4 +32,6 @@ feature "User can login" do
                 end
                 expect(page).to have_content "Invalid Email or password"
          end
+        end
+        
         
