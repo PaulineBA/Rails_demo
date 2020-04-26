@@ -1,5 +1,5 @@
 require_relative 'boot'
-
+require "devise"
 require "rails"
 require "active_model/railtie"
 require "active_job/railtie"

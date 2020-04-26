@@ -1,19 +1,24 @@
 class ArticlesController < ApplicationController
+  #before_action :authenticate_user!
+
   def index
-
     @articles = Article.all   
+  end
 
-    end
+  def show 
+      @article = Article.find(params[:id]) 
+  end
 
-    def show 
-      @article = Article.find(params[:id])
-    
-    end
-
-    def new
-    end
+  def new
+      @article = Article.new
+  end
    
-    def create
-      render plain: params[:article].inspect
+  def create
+      @article = Article.create(params.require(:article).permit(:title, :content))
+    if @article.persisted?
+      redirect_to @article, notice: "Article was created"
+    else
+      render 'new', notice: "Something went wrong"
+      end
     end
 end

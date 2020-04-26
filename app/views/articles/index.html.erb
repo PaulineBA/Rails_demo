@@ -1,10 +1,17 @@
-<h1>Articles#index</h1>
-<<p>A breaking news item</p>
+<h1>Articles List</h1>
+<p>A breaking news item</p>
 <p>Some really breaking action</p>
 <ul>
   <% @articles.each do |article| %>
-    <li>
-       <%= link_to article.title, article_path(article) %><br />
-    </li>
-  <% end %>
-</ul>
+    <li><%= link_to article.title, article_path(article) %></li><br />
+    <% end %>
+  </ul> 
+  <% if model_signed_in? %>
+        <h5><%= link_to 'Add New Article', new_article_path %></h5>
+        <%= link_to 'Logout', destroy_model_session_path, method: :delete %>
+        
+        <% else %>
+      <p><%= link_to 'Sign_up', new_model_registration_path %></p>
+      <%= link_to 'Log_in', new_model_session_path %>
+      <% end %>
+    
